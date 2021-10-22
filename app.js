@@ -26,14 +26,15 @@ app.set('json spaces', 4);
 
 app.listen(3000);
 
-app.get('/countries', async (req, res) => {
+app.get('/country', async (req, res) => {
 
     try {
-        const result = await makeRequest('GET', '/v1/data/countries');
+        const result = await makeRequest('GET', '/v1/payment_methods/country?country=it');
+    
         res.json(result);
-    } catch (error) {
+      } catch (error) {
         res.json(error);
-    }
+      }
 
 })
 
@@ -41,10 +42,10 @@ app.get('/payment', async (req, res) => {
 
     try {
         const body = {
-            amount: 100,
-            currency: 'HNL',
+            amount: 230,
+            currency: 'EUR',
             payment_method: {
-                type: 'hn_tengo_cash'
+                type: 'it_psc_cash'
             }
         };
         const result = await makeRequest('POST', '/v1/payments', body);
